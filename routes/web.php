@@ -15,3 +15,7 @@ Route::post('/register', [RegisterController::class, 'RegisterAccount']);
 
 
 Route::get('/login', [LoginController::class, 'OpenLoginPage']);
+Route::post('/login', [LoginController::class, 'LoginCheck']);
+
+
+Route::get('/dashboard', [LoginController::class, 'OpenDashboardPage']);
