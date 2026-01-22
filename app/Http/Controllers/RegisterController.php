@@ -22,11 +22,16 @@ class RegisterController extends Controller
         ]);
 
 
-        DB::table('users_tb')->insert([
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-        ]);
+        $usernameExists = DB::table('users_tb')->where('username', $request->username)->first();
 
-        return redirect()->action([LoginController::class, 'OpenLoginPage']);
+        if(!$usernameExists){
+            DB::table('users_tb')->insert([
+                'username' => $request->username,
+                'password' => Hash::make($request->password),
+            ]);
+            return redirect()->action([LoginController::class, 'OpenLoginPage']);
+        } else{
+            return redirect()->action([RegisterController::class, 'RegisterAccount']);
+        }
     }
 }
