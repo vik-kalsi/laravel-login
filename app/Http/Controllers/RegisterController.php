@@ -31,7 +31,9 @@ class RegisterController extends Controller
             ]);
             return redirect()->action([LoginController::class, 'OpenLoginPage']);
         } else{
-            return redirect()->action([RegisterController::class, 'RegisterAccount']);
+            return redirect()->action([RegisterController::class, 'RegisterAccount'])
+            ->withErrors(['usernameAlreadyExists' => "This Username already exists, please choose a different username"])
+            ->withInput();
         }
     }
 }
