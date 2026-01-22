@@ -25,7 +25,8 @@ class LoginController extends Controller
         
         if(!$user || !Hash::check($request->password, $user->password)) {
             return redirect()->action([LoginController::class, 'OpenLoginPage'])
-            ->withErrors(['loginIncorrect' => "Invalid username or password"]);
+            ->withErrors(['loginIncorrect' => "Invalid username or password"])
+            ->withInput();
         } else {
             return redirect()->action([LoginController::class, 'OpenDashboardPage']);
         }
