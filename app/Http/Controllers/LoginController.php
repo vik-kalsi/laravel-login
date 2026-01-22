@@ -24,7 +24,8 @@ class LoginController extends Controller
         $user = DB::table('users_tb')->where('username', $request->username)->first();
         
         if(!$user || !Hash::check($request->password, $user->password)) {
-            return redirect()->action([LoginController::class, 'OpenLoginPage']);
+            return redirect()->action([LoginController::class, 'OpenLoginPage'])
+            ->withErrors(['loginIncorrect' => "Invalid username or password"]);
         } else {
             return redirect()->action([LoginController::class, 'OpenDashboardPage']);
         }
