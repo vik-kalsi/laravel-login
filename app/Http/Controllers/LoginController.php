@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
     public function OpenLoginPage(){
-        return view('pages.login');
+        if (!session('username')){
+            return view('pages.login');
+        } else {
+            return redirect()->action([LoginController::class, 'OpenDashboardPage']);
+        }
     }
 
 
@@ -28,6 +32,7 @@ class LoginController extends Controller
             ->withErrors(['loginIncorrect' => "Invalid username or password"])
             ->withInput();
         } else {
+            session(['username' => $user->username]);
             return redirect()->action([LoginController::class, 'OpenDashboardPage']);
         }
     }
@@ -35,6 +40,10 @@ class LoginController extends Controller
 
 
     public function OpenDashboardPage(){
-        return view('pages.dashboard');
+        if((session('username'))) {
+            return view('pages.dashboard');
+        } else {
+            return view('pages.login');
+        }
     }
 }

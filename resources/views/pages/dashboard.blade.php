@@ -11,6 +11,10 @@
 
     <div class="mt-4">
         
+        @if(session('username'))
+            Hi {{ session('username') }}
+        @endif
+
         <p>You have logged in</p>
 
 
