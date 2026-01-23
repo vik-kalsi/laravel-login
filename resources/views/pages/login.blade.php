@@ -21,6 +21,10 @@
             @if (session('registerSuccess'))
                 <p>{{ session('registerSuccess') }}</p>
             @endif
+
+            @if (session('LogoutComplete'))
+                <p>{{ session('LogoutComplete') }}</p>
+            @endif
             <input class="border-2 p-1" type="text" name="username" placeholder="Username" value="{{ old('username') }}" required>
 
             @error('password')

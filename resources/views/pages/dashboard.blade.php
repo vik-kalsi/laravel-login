@@ -15,7 +15,7 @@
             Hi {{ session('username') }}
         @endif
 
-        <p>You have logged in</p>
+        <p>You are currently logged in</p>
 
 
     </div>
