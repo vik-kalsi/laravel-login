@@ -17,6 +17,10 @@
             @error('username')
                 <p>{{ $message }}</p>
             @enderror
+
+            @if (session('registerSuccess'))
+                <p>{{ session('registerSuccess') }}</p>
+            @endif
             <input class="border-2 p-1" type="text" name="username" placeholder="Username" value="{{ old('username') }}" required>
 
             @error('password')

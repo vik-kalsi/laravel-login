@@ -29,7 +29,8 @@ class RegisterController extends Controller
                 'username' => $request->username,
                 'password' => Hash::make($request->password),
             ]);
-            return redirect()->action([LoginController::class, 'OpenLoginPage']);
+            return redirect()->action([LoginController::class, 'OpenLoginPage'])
+            ->with('registerSuccess', 'Account has been registered succesfully, please login');
         } else{
             return redirect()->action([RegisterController::class, 'RegisterAccount'])
             ->withErrors(['usernameAlreadyExists' => "This Username already exists, please choose a different username"])
