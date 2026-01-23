@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Hash;
 class RegisterController extends Controller
 {
     public function OpenRegistrationPage(){
-        return view('pages.registration');
+        if (!session('username')){
+            return view('pages.registration');
+        } else {
+            return redirect()->action([LoginController::class, 'OpenDashboardPage']);
+        }
     }
 
 

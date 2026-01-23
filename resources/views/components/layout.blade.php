@@ -12,8 +12,22 @@
     <div class="mb-4">
         <ul class="border-2 flex py-2">
             <li class="px-2"><a class="hover:font-bold" href="/">Homepage</a></li>
-            <li class="px-2"><a class="hover:font-bold" href="/login">Login</a></li>
-            <li class="px-2"><a class="hover:font-bold" href="/register">Register</a></li>
+
+            @if(!session('username'))
+                <li class="px-2"><a class="hover:font-bold" href="/login">Login</a></li>
+            @endif
+            
+            @if(session('username'))
+                <li class="px-2"><a class="hover:font-bold" href="/dashboard">Dashboard</a></li>
+            @endif
+
+            @if(session('username'))
+                <li class="px-2"><a class="hover:font-bold" href="/logout">Logout</a></li>
+            @endif
+            
+            @if(!session('username'))
+                <li class="px-2"><a class="hover:font-bold" href="/register">Register</a></li>
+            @endif
         </ul>
     </div>
 
