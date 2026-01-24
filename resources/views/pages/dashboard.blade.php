@@ -10,15 +10,17 @@
 
 
     <div class="mt-4">
-        
         @if(session('username'))
             Hi {{ session('username') }}
         @endif
 
         <p>You are currently logged in</p>
-
-
     </div>
 
+
+    <div class="grid mt-6">
+        <a class="hover:font-bold text-xl" href="/updateaccount">Click to Update Account</a>
+        <a class="hover:font-bold text-xl" href="/deleteaccount">Click to Delete Account</a>
+    </div>
 
 </x-layout>
