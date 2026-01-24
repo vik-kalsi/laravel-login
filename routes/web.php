@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\UpdateAccountController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,7 +19,9 @@ Route::post('/register', [RegisterController::class, 'RegisterAccount']);
 Route::get('/login', [LoginController::class, 'OpenLoginPage']);
 Route::post('/login', [LoginController::class, 'LoginCheck']);
 
-
 Route::get('/dashboard', [LoginController::class, 'OpenDashboardPage']);
 
 Route::get('/logout', [LogoutController::class, 'LogoutUser']);
+
+Route::get('/updateaccount', [UpdateAccountController::class, 'OpenUpdateAccountPage']);
+Route::post('/updateaccount', [UpdateAccountController::class, 'UpdateUsername']);

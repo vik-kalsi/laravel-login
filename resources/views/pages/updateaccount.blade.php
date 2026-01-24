@@ -9,12 +9,31 @@
     <h1 class="font-bold text-4xl">Update Account Page</h1>
 
 
-    <div class="mt-4">
+    <div class="grid mt-4">
         
-        <form class="grid gap-4" action="/updateaccount" method="post">
+        @if(session('username'))
+            Update details for {{ session('username') }}
+        @endif
+
+        <a class="hover:font-bold mt-6" href="/dashboard">Back to Dashboard</a>
+
+        <form class="grid gap-4 border-2 p-2 mt-8" action="/updateaccount" method="post">
             @csrf
 
-            
+            <p>Update Username</p>
+            @error('newUsername')
+                <p>{{ $message }}</p>
+            @enderror
+
+            @if (session('UsernameUpdated'))
+                <p>{{ session('UsernameUpdated') }}</p>
+            @endif
+
+            @error('usernameAlreadyExists')
+                <p>{{ $message }}</p>
+            @enderror
+            <input class="border-2 p-1" type="text" name="newUsername" placeholder="New Username" value="{{ old('username') }}">
+            <button class="border-2 p-1" type="submit">Update Username</button>
         </form>
 
     </div>
