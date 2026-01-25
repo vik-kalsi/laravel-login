@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UpdateAccountController extends Controller
 {
@@ -17,7 +18,6 @@ class UpdateAccountController extends Controller
 
 
     public function UpdateUsername(Request $request){
-
         $request->validate([
             'newUsername' => 'required',
         ]);
@@ -38,4 +38,23 @@ class UpdateAccountController extends Controller
             ->withInput();
         }
     }
+
+
+    public function RedirectToLoginPage(){
+        return redirect()->action([LoginController::class, 'OpenLoginPage']);
+    }
+
+
+    public function UpdatePassword(Request $request){
+        $request->validate([
+            'newPassword' => 'required|min:8|confirmed',
+        ]);
+
+        DB::table('users_tb') -> where('username', session('username')) 
+        -> update(['password' => Hash::make($request->newPassword)]);
+
+        return redirect()->action([UpdateAccountController::class, 'OpenUpdateAccountPage'])
+        ->with('passwordUpdated', 'Password has been updated succesfully');
+    }
+
 }

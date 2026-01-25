@@ -32,8 +32,28 @@
             @error('usernameAlreadyExists')
                 <p>{{ $message }}</p>
             @enderror
-            <input class="border-2 p-1" type="text" name="newUsername" placeholder="New Username" value="{{ old('username') }}">
+            <input class="border-2 p-1" type="text" name="newUsername" placeholder="New Username" value="{{ old('newUsername') }}">
             <button class="border-2 p-1" type="submit">Update Username</button>
+        </form>
+
+
+
+
+        <form class="grid gap-4 border-2 p-2 mt-8" action="/updatepassword" method="post">
+            @csrf
+
+            <p>Update Password</p>
+            @error('newPassword')
+                <p>{{ $message }}</p>
+            @enderror
+
+            @if (session('passwordUpdated'))
+                <p>{{ session('passwordUpdated') }}</p>
+            @endif
+
+            <input class="border-2 p-1" type="password" name="newPassword" placeholder="New Password">
+            <input class="border-2 p-1" type="password" name="newPassword_confirmation" placeholder="Confirm New Password">
+            <button class="border-2 p-1" type="submit">Update Password</button>
         </form>
 
     </div>

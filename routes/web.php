@@ -25,3 +25,5 @@ Route::get('/logout', [LogoutController::class, 'LogoutUser']);
 
 Route::get('/updateaccount', [UpdateAccountController::class, 'OpenUpdateAccountPage']);
 Route::post('/updateaccount', [UpdateAccountController::class, 'UpdateUsername']);
+Route::get('/updatepassword', [UpdateAccountController::class, 'RedirectToLoginPage']);
+Route::post('/updatepassword', [UpdateAccountController::class, 'UpdatePassword']);
