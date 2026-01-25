@@ -22,6 +22,10 @@
             @endif
 
             @if(session('username'))
+                <li class="px-2"><a class="hover:font-bold" href="/userlist">List of all users</a></li>
+            @endif
+
+            @if(session('username'))
                 <li class="px-2"><a class="hover:font-bold" href="/logout">Logout</a></li>
             @endif
             
