@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\UpdateAccountController;
+use App\Http\Controllers\DeleteAccountController;
 use App\Http\Controllers\UserListController;
 
 Route::get('/', function () {
@@ -30,3 +31,6 @@ Route::get('/updateaccount', [UpdateAccountController::class, 'OpenUpdateAccount
 Route::post('/updateaccount', [UpdateAccountController::class, 'UpdateUsername']);
 Route::get('/updatepassword', [UpdateAccountController::class, 'RedirectToLoginPage']);
 Route::post('/updatepassword', [UpdateAccountController::class, 'UpdatePassword']);
+
+Route::get('/deleteaccount', [DeleteAccountController::class, 'OpenDeleteAccountPage']);
+Route::post('/deleteaccount', [DeleteAccountController::class, 'DeleteAccount']);
